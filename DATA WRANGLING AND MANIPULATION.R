@@ -53,3 +53,96 @@ DATA[DATA$HouseNetWorth!="Medium",]# Extract all values in the  HouseNetWorth co
 DATA[DATA$StoreArea>=50 & DATA$HouseNetWorth=="Medium" & DATA$LawnArea<=50,]
 
 DATA[DATA$StoreArea>50| DATA$StoreArea<20,]# Extract values in the StoreArea variable that are greater than 50 or less than 20
+
+plot(DATA$StoreArea)
+
+with(DATA, plot(StoreArea))
+
+plot(x=DATA$StoreArea, y=DATA$HousePrice)
+
+V1<-(1:10)
+V1
+
+V2 <- (seq(1,20, 2))
+V2
+
+par(mfrow=c(2,2))  # Used to set parameters to the plot
+plot(V1,V2, type = "l")# plot just the line
+
+plot(V1,V2,type = "p") # plot just the points
+
+plot(V1,V2,type = "b") #plot both the line and the points
+
+plot(V1,V2, type = "o")# Both points and lines with the line passing through the points
+
+plot(V1,V2,type = "c") # Empty points joined by the lines
+
+hist(DATA$StoreArea) # histogram
+
+dens<- density(DATA$StoreArea)
+
+boxplot(DATA$StoreArea, ylab="StoreArea")
+
+boxplot(StoreArea ~ HouseNetWorth, data = DATA, ylab = "StoreArea", xlab = "HouseNetWorth" )
+
+library(vioplot)
+vioplot(StoreArea ~ HouseNetWorth, data = DATA, ylab = "StoreArea", xlab = "HouseNetWorth", col="lightblue")
+
+dotchart(DATA$StoreArea)
+
+dotchart(DATA$StoreArea, groups = DATA$StoreArea)# This is useful for identifying unusual observations within
+#a factor level that might be obscured when looking at all the data together.
+
+plot(DATA$StoreArea, DATA$BasementArea, xlab = "StoreArea", ylab = "BasementArea")
+
+par(mar=c(4.1, 4.4, 4.1, 1.9)) #Setting graphical parameters
+plot(DATA$StoreArea,DATA$BasementArea, 
+     xlab = "StoreArea", ylab = "BasementArea", xlim = c(0,30), ylim = c(0,200) )
+# xlim and ylim functions are used to increase the range of the axes scales.
+
+
+par(mar=c(4.1, 4.4, 4.1, 1.9)) #Setting graphical parameters
+plot(DATA$StoreArea,DATA$BasementArea, 
+     xlab = "StoreArea", ylab = "BasementArea", xlim = c(0,30), ylim = c(0,200) ,
+     bty="l", col= "maroon") # bty="l" argument is used to remove the box around the plot
+
+install.packages("ggplot2")
+library(ggplot2)
+ggplot(mapping = aes(x=StoreArea, y=BasementArea),data = DATA)
+
+ggplot(mapping = aes(x=StoreArea, y=BasementArea),data = DATA)+ 
+  geom_point() # Adding a geom to display data as point data
+
+
+ggplot(mapping = aes(x=StoreArea, y=BasementArea),data = DATA)+ 
+  geom_point() + geom_line() #Adding geom_line
+
+
+ggplot(mapping = aes(x=StoreArea, y=BasementArea),data = DATA)+ geom_point() + 
+  geom_smooth() # Change the geom_line to geom_smooth
+
+
+ggplot(mapping = aes(x=StoreArea, y=BasementArea),data = DATA)+ geom_point() + 
+  geom_smooth(method = "lm", se=FALSE)
+
+ggplot(mapping = aes(x=StoreArea, y=BasementArea),data = DATA)+ geom_point() + 
+  geom_hline(yintercept = 1000, colour= "red" , linetype= "dashed")
+
+############## Conditional Statements
+eggs<-TRUE
+if(eggs==TRUE){n.milk<-6}else
+{n.milk<-1}
+n.milk
+
+
+############ Loops
+# Used to perfom repetitive tasks
+# The three types of 1). For loops, while loops and Repeat Loops
+# Alternative to loops is lapply()function
+
+i<- seq(1:5)
+for (i in 1:5) {
+  print(i)
+}
+
+
